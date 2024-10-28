@@ -3,15 +3,17 @@ package com.giodefa.service.product;
 import java.util.List;
 
 import com.giodefa.model.Product;
+import com.giodefa.request.AddProductRequest;
+import com.giodefa.request.ProductUpdateRequest;
 
 public interface IProductService {
-    Product addProduct(Product product);
+    Product addProduct(AddProductRequest request);
     Product getProductById(Long id);
     void deleteProductById(Long id);
-    void updateProduct(Product product, Long productId);
+    Product updateProduct(ProductUpdateRequest product, Long productId);
 
     List<Product> getAllProducts();
-    List<Product> getProductsByCategoryId(String category);
+    List<Product> getProductsByCategory(String category);
     List<Product> getProductsByBrand(String brand);
     List<Product> getProductsByCategoryAndBrand(String category, String brand);
     List<Product> getProductsByName(String name);
