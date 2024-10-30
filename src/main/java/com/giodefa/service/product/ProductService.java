@@ -62,10 +62,10 @@ public class ProductService implements IProductService {
 
     private Product updateExitingProduct(Product existingProduct, ProductUpdateRequest request) {
         existingProduct.setName(request.getName());
-        existingProduct.setName(request.getBrand());
-        existingProduct.setName(request.getPrice());
-        existingProduct.setName(request.getInventory());
-        existingProduct.setName(request.getDescirption());
+        existingProduct.setBrand(request.getBrand());
+        existingProduct.setPrice(request.getPrice());
+        existingProduct.setInventory(request.getInventory());
+        existingProduct.setDescirption(request.getDescirption());
         
         Category category = categoryRepository.findByName(request.getCategory().getName());
         existingProduct.setCategory(category);
@@ -73,9 +73,10 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product updateProduct(ProductUpdateRequest product, Long productId) {
+    public Product updateProduct(ProductUpdateRequest request, Long productId) {
         return productRepository.findById(productId)
-            .map(existingProduct -> updateExitingProduct(existingProduct, request)).map(productRepository::save)
+            .map(existingProduct -> updateExitingProduct(existingProduct, request)) // Update the product
+            .map(productRepository::save) // Save the updated product
             .orElseThrow(() -> new ProductNotFoundException("Product not found"));
     }
 
