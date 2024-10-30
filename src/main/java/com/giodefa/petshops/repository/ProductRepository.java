@@ -1,10 +1,10 @@
-package com.giodefa.repository;
+package com.giodefa.petshops.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.giodefa.model.Product;
+import com.giodefa.petshops.model.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 

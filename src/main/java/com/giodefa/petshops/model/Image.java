@@ -1,12 +1,14 @@
-package com.giodefa.model;
+package com.giodefa.petshops.model;
 
-import java.util.List;
+import java.sql.Blob;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,17 +19,17 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Category {
+public class Image {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String fileName;
+    private String fileType;
+    @Lob
+    private Blob image;
+    private String downloadUrl;
 
-    @OneToMany(mappedBy="category")
-    private List<Product> products;
-
-    public Category(String name) {
-        this.name = name;
-    }
-
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 }

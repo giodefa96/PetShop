@@ -1,4 +1,4 @@
-package com.giodefa.model;
+package com.giodefa.petshops.model;
 
 import java.math.BigDecimal;
 import java.util.List;

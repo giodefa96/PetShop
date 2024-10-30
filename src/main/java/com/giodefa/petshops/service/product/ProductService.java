@@ -1,17 +1,17 @@
-package com.giodefa.service.product;
+package com.giodefa.petshops.service.product;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.giodefa.exceptions.ProductNotFoundException;
-import com.giodefa.model.Category;
-import com.giodefa.model.Product;
-import com.giodefa.repository.CategoryRepository;
-import com.giodefa.repository.ProductRepository;
-import com.giodefa.request.AddProductRequest;
-import com.giodefa.request.ProductUpdateRequest;
+import com.giodefa.petshops.exceptions.ProductNotFoundException;
+import com.giodefa.petshops.model.Category;
+import com.giodefa.petshops.model.Product;
+import com.giodefa.petshops.repository.CategoryRepository;
+import com.giodefa.petshops.repository.ProductRepository;
+import com.giodefa.petshops.request.AddProductRequest;
+import com.giodefa.petshops.request.ProductUpdateRequest;
 
 import lombok.RequiredArgsConstructor;
 

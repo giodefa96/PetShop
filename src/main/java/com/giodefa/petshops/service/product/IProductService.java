@@ -1,10 +1,10 @@
-package com.giodefa.service.product;
+package com.giodefa.petshops.service.product;
 
 import java.util.List;
 
-import com.giodefa.model.Product;
-import com.giodefa.request.AddProductRequest;
-import com.giodefa.request.ProductUpdateRequest;
+import com.giodefa.petshops.model.Product;
+import com.giodefa.petshops.request.AddProductRequest;
+import com.giodefa.petshops.request.ProductUpdateRequest;
 
 public interface IProductService {
     Product addProduct(AddProductRequest request);

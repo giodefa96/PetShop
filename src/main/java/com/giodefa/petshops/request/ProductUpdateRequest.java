@@ -1,13 +1,13 @@
-package com.giodefa.request;
+package com.giodefa.petshops.request;
 
 import java.math.BigDecimal;
 
-import com.giodefa.model.Category;
+import com.giodefa.petshops.model.Category;
 
 import lombok.Data;
 
 @Data
-public class AddProductRequest {
+public class ProductUpdateRequest {
     private Long id;
     private String name;
     private String brand;

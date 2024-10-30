@@ -1,4 +1,4 @@
-package com.giodefa.exceptions;
+package com.giodefa.petshops.exceptions;
 
 public class ProductNotFoundException extends RuntimeException{
     public ProductNotFoundException(String message) {
