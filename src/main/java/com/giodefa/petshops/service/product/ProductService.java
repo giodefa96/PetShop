@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.giodefa.petshops.exceptions.ProductNotFoundException;
+import com.giodefa.petshops.exceptions.ResourceNotFoundException;
 import com.giodefa.petshops.model.Category;
 import com.giodefa.petshops.model.Product;
 import com.giodefa.petshops.repository.CategoryRepository;
@@ -49,14 +49,14 @@ public class ProductService implements IProductService {
     @Override
     public Product getProductById(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(()-> new ProductNotFoundException("Product not Found!"));
+                .orElseThrow(()-> new ResourceNotFoundException("Product not Found!"));
     }
 
     @Override
     public void deleteProductById(Long id) {
         productRepository.findById(id)
             .ifPresentOrElse(productRepository::delete,
-                    ()-> {throw new ProductNotFoundException("Product Not Found");});
+                    ()-> {throw new ResourceNotFoundException("Product Not Found");});
     }
 
 
@@ -77,7 +77,7 @@ public class ProductService implements IProductService {
         return productRepository.findById(productId)
             .map(existingProduct -> updateExistingProduct(existingProduct, request)) // Update the product
             .map(productRepository::save) // Save the updated product
-            .orElseThrow(() -> new ProductNotFoundException("Product not found"));
+            .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
     }
 
     @Override
