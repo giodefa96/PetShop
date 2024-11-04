@@ -2,6 +2,7 @@ package com.giodefa.petshops.service.product;
 
 import java.util.List;
 
+import com.giodefa.petshops.dto.ProductDto;
 import com.giodefa.petshops.model.Product;
 import com.giodefa.petshops.request.AddProductRequest;
 import com.giodefa.petshops.request.ProductUpdateRequest;
@@ -21,4 +22,6 @@ public interface IProductService {
     
     Long countProductsByBrandAndName(String category, String name);
 
+    public ProductDto convertToDto(Product product);
+    public List<ProductDto> getConvertedProducts(List<Product> products);
 }

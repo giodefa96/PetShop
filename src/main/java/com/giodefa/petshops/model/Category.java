@@ -2,6 +2,8 @@ package com.giodefa.petshops.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,7 +25,8 @@ public class Category {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy="category")
+    @JsonIgnore
+    @OneToMany(mappedBy = "category")
     private List<Product> products;
 
     public Category(String name) {

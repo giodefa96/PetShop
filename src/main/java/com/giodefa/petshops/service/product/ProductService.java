@@ -3,12 +3,17 @@ package com.giodefa.petshops.service.product;
 import java.util.List;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import com.giodefa.petshops.dto.ImageDto;
+import com.giodefa.petshops.dto.ProductDto;
 import com.giodefa.petshops.exceptions.ResourceNotFoundException;
 import com.giodefa.petshops.model.Category;
+import com.giodefa.petshops.model.Image;
 import com.giodefa.petshops.model.Product;
 import com.giodefa.petshops.repository.CategoryRepository;
+import com.giodefa.petshops.repository.ImageRepository;
 import com.giodefa.petshops.repository.ProductRepository;
 import com.giodefa.petshops.request.AddProductRequest;
 import com.giodefa.petshops.request.ProductUpdateRequest;
@@ -20,6 +25,8 @@ import lombok.RequiredArgsConstructor;
 public class ProductService implements IProductService {
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final ImageRepository imageRepository;
+    private final ModelMapper modelMapper;
 
     @Override
     public Product addProduct(AddProductRequest request) {
@@ -41,7 +48,7 @@ public class ProductService implements IProductService {
             request.getBrand(),
             request.getPrice(),
             request.getInventory(),
-            request.getDescirption(),
+            request.getDescription(),
             category
         );
     }
@@ -115,4 +122,21 @@ public class ProductService implements IProductService {
         return productRepository.countByBrandAndName(brand, name);
     }
 
+    @Override
+    public List<ProductDto> getConvertedProducts(List<Product> products) {
+        return products.stream()
+                .map(this::convertToDto)
+                .toList();
+    }
+
+    @Override
+    public ProductDto convertToDto(Product product) {
+        ProductDto productDto = modelMapper.map(product, ProductDto.class);
+        List<Image> images = imageRepository.findByProductId(product.getId());
+        List<ImageDto> imageDtos = images.stream()
+                .map(image -> modelMapper.map(image, ImageDto.class))
+                .toList();
+        productDto.setImages(imageDtos);
+        return productDto;
+    }
 }

@@ -51,7 +51,7 @@ public class ImageService implements IImageService {
                 image.setImage(new SerialBlob(file.getBytes()));
                 image.setProduct(product);
                 
-                String baseUrl = "/api/v1/images/image/download";
+                String baseUrl = "/api/v1/images/image/download/";
                 String donwloadUrl = baseUrl + image.getId();
                 image.setDownloadUrl(donwloadUrl);
                 Image savedImage = imageRepository.save(image);
@@ -60,8 +60,8 @@ public class ImageService implements IImageService {
                 imageRepository.save(savedImage);
 
                 ImageDto imageDto = new ImageDto();
-                imageDto.setImageID(savedImage.getId());
-                imageDto.setImageName(savedImage.getFileName());
+                imageDto.setId(savedImage.getId());
+                imageDto.setFileName(savedImage.getFileName());
                 imageDto.setDownloadUrl(savedImage.getDownloadUrl());
                 savedImageDto.add(imageDto);
             } catch (IOException | SQLException e) {
