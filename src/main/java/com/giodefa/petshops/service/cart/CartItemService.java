@@ -84,7 +84,7 @@ public class CartItemService implements ICartItemService {
     }
 
     @Override
-    private CartItem getCartItem(Long cartId, Long productId) {
+    public CartItem getCartItem(Long cartId, Long productId) {
         Cart cart = cartService.getCart(cartId);
         return cart.getItems().stream()
             .filter(item -> item.getProduct().getId().equals(productId))
